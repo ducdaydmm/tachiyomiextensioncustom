@@ -59,4 +59,7 @@ done | jq -sr '[.[]]' > index.json
 # Alternate minified copy
 jq -c '.' < index.json > index.min.json
 
+# Copy repo metadata for Kahon/Mihon
+cp ../.github/scripts/repo.json . || true
+
 cat index.json
