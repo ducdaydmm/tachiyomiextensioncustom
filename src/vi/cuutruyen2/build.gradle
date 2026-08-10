@@ -5,13 +5,13 @@ plugins {
 }
 
 ext {
-    extName = 'CuuTruyen'
+    extName = 'CuuTruyen2'
     pkgNameSuffix = 'vi.cuutruyen'
-    extClass = '.CuuTruyen'
+    extClass = '.CuuTruyen2'
     extVersionCode = 1
     isNsfw = false
-    PLUGIN_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen'
-    EXTENSION_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen'
+    PLUGIN_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen2'
+    EXTENSION_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen2'
     SITE_MULTISRC = 'cuutruyen'
     IS_MULTISRC = false
 }

@@ -28,9 +28,9 @@ import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.long
 
-class CuuTruyen : HttpSource(), ConfigurableSource {
+class CuuTruyen2 : HttpSource(), ConfigurableSource {
 
-    override val name = "Cứu Truyện"
+    override val name = "Cứu Truyện 2"
     override val baseUrl = "https://cuutruyen.net"
     override val lang = "vi"
     override val supportsLatest = true
