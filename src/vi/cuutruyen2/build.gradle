@@ -7,7 +7,7 @@ plugins {
 ext {
     extName = 'CuuTruyen'
     pkgNameSuffix = 'vi.cuutruyen'
-    extClass = '.CuuTruyen'
+    extClass = '.vi.cuutruyen.CuuTruyen'
     extVersionCode = 1
     isNsfw = false
     PLUGIN_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen'
@@ -17,10 +17,6 @@ ext {
 }
 
 apply from: "$rootDir/common.gradle"
-
-android {
-    namespace 'eu.kanade.tachiyomi.extension.vi.cuutruyen'
-}
 
 dependencies {
     compileOnly libs.tachiyomi.lib
