@@ -185,7 +185,10 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
 
         return pagesArray.mapIndexed { index, jsonElement ->
             val obj = jsonElement.jsonObject
-            val imageUrl = obj["image_url"]?.jsonPrimitive?.content ?: ""
+            var imageUrl = obj["image_url"]?.jsonPrimitive?.content ?: ""
+            
+            // Thay thế domain ảnh theo yêu cầu test
+            imageUrl = imageUrl.replace("storage-ct.lrclib.net", "storage-bravo.cuutruyen.net")
             
             Page(
                 index = index,
