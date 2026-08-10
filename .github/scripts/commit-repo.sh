@@ -10,8 +10,8 @@ if [ -n "$(git status --porcelain)" ]; then
     git commit -m "Update extensions repo"
     git push
 
-    # Purge cached index on jsDelivr
-    curl https://purge.jsdelivr.net/gh/tachiyomiorg/extensions@repo/index.min.json
+    # Purge cached index on jsDelivr (skipped for custom repo)
+    # curl https://purge.jsdelivr.net/gh/ducdaydmm/tachiyomiextensioncustom@repo/index.min.json
 else
     echo "No changes to commit"
 fi

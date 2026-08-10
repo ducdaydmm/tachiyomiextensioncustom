@@ -1,0 +1,27 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlinx-serialization'
+}
+
+ext {
+    extName = 'CuuTruyen'
+    pkgNameSuffix = 'vi.cuutruyen'
+    extClass = '.CuuTruyen'
+    extVersionCode = 1
+    isNsfw = false
+    PLUGIN_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen'
+    EXTENSION_CLASS_NAME = 'eu.kanade.tachiyomi.extension.vi.cuutruyen.CuuTruyen'
+    SITE_MULTISRC = 'cuutruyen'
+    IS_MULTISRC = false
+}
+
+apply from: "$rootDir/common.gradle"
+
+android {
+    namespace 'eu.kanade.tachiyomi.extension.vi.cuutruyen'
+}
+
+dependencies {
+    compileOnly libs.tachiyomi.lib
+}

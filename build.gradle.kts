@@ -17,6 +17,7 @@ allprojects {
         mavenCentral()
         google()
         maven(url = "https://jitpack.io")
+        maven(url = "https://raw.githubusercontent.com/keiyoushi/extensions/repo/")
     }
 }
 

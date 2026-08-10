@@ -29,35 +29,25 @@ jobs:
           java-version: 11
           distribution: adopt
 
-      - name: Prepare signing key
-        run: |
-          echo ${{ secrets.SIGNING_KEY }} | base64 -d > signingkey.jks
-
       - name: Build extensions (chunk ${{ matrix.chunk }})
         uses: gradle/gradle-build-action@v2
-        env:
-          ALIAS: ${{ secrets.ALIAS }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         with:
-          arguments: assembleRelease
+          arguments: assembleDebug
 
       - name: Upload APKs
         uses: actions/upload-artifact@v4
-        if: "github.repository == 'tachiyomiorg/extensions'"
         with:
           name: "individual-apks"
           path: "**/*.apk"
           retention-days: 1
 
       - name: Clean up CI files
-        run: rm signingkey.jks
+        run: echo "No keys to clean"
 
   publish_repo:
     name: Publish repo
     needs:
       - build_individual
-    if: "github.repository == 'tachiyomiorg/extensions'"
     runs-on: ubuntu-latest
     steps:
       - name: Download APK artifacts
@@ -81,7 +71,7 @@ jobs:
         run: |
           cd main
           ./.github/scripts/move-apks.sh
-          INSPECTOR_LINK="$(curl -s "https://api.github.com/repos/tachiyomiorg/tachiyomi-extensions-inspector/releases/latest" | jq -r '.assets[0].browser_download_url')"
+          INSPECTOR_LINK="$(curl -s "https://api.github.com/repos/keiyoushi/tachiyomi-extensions-inspector/releases/latest" | jq -r '.assets[0].browser_download_url')"
           curl -L "$INSPECTOR_LINK" -o ./Inspector.jar
           java -jar ./Inspector.jar "apk" "output.json" "tmp"
           ./.github/scripts/create-repo.sh

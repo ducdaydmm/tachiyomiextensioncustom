@@ -49,9 +49,9 @@ android {
         }
     }
 
-    dependenciesInfo {
-        includeInApk = false
-    }
+//    dependenciesInfo {
+//        includeInApk = false
+//    }
 
     buildFeatures {
         // Disable unused AGP features
@@ -82,6 +82,9 @@ android {
 
 repositories {
     mavenCentral()
+    google()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/' }
 }
 
 dependencies {
