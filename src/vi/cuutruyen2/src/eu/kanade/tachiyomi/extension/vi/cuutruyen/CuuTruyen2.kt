@@ -43,13 +43,14 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
     }
 
     override fun headersBuilder() = super.headersBuilder()
-        .add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-        .add("Referer", "$baseUrl/")
-        .add("Origin", baseUrl)
+        .add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
+        .add("Referer", baseUrl)
         .add("X-Requested-With", "XMLHttpRequest")
-        .add("Accept", "application/json")
-        .add("Accept-Language", "vi-VN,vi;q=0.9")
-        .add("Cache-Control", "no-cache")
+        .add("Accept", "application/json, text/plain, */*")
+        .add("Accept-Language", "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7")
+        .add("Sec-Fetch-Dest", "empty")
+        .add("Sec-Fetch-Mode", "cors")
+        .add("Sec-Fetch-Site", "same-origin")
 
     private var isCloudflareBypassed = false
 
