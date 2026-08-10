@@ -172,8 +172,8 @@ class CuuTruyen : HttpSource(), ConfigurableSource {
             
             Page(
                 index = index,
-                imageUrl = imageUrl,
-                uri = imageUrl
+                url = "",
+                imageUrl = imageUrl
             )
         }
     }
