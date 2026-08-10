@@ -114,7 +114,7 @@
     ]
   },
   {
-    "name": "Tachiyomi: CuuTruyen",
+    "name": "Tachiyomi: CuuTruyen2",
     "pkg": "eu.kanade.tachiyomi.extension.vi.cuutruyen",
     "apk": "tachiyomi-vi.cuutruyen-v1.4.1.apk",
     "lang": "vi",
@@ -123,9 +123,9 @@
     "nsfw": 0,
     "sources": [
       {
-        "name": "Cứu Truyện",
+        "name": "Cứu Truyện 2",
         "lang": "vi",
-        "id": "4989357807406366033",
+        "id": "7380171308803596437",
         "baseUrl": "https://cuutruyen.net",
         "versionId": 1
       }
