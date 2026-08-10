@@ -42,15 +42,13 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
         Injekt.get<Application>().getSharedPreferences("source_$id", 0x0000)
     }
 
+    override fun headersBuilder() = super.headersBuilder()
+        .add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+        .add("Referer", baseUrl)
+        .add("Accept", "application/json")
+        .add("Accept-Language", "vi-VN,vi;q=0.9")
+
     override val client: OkHttpClient = network.cloudflareClient.newBuilder()
-        .addInterceptor { chain ->
-            val originalRequest = chain.request()
-            val newRequest = originalRequest.newBuilder()
-                .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-                .addHeader("Referer", baseUrl)
-                .build()
-            chain.proceed(newRequest)
-        }
         .build()
 
     // ==================== POPULAR ====================
