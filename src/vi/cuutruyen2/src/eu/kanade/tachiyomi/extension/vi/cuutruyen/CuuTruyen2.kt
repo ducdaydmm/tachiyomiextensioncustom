@@ -44,11 +44,30 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
 
     override fun headersBuilder() = super.headersBuilder()
         .add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-        .add("Referer", baseUrl)
+        .add("Referer", "$baseUrl/")
+        .add("Origin", baseUrl)
+        .add("X-Requested-With", "XMLHttpRequest")
         .add("Accept", "application/json")
         .add("Accept-Language", "vi-VN,vi;q=0.9")
+        .add("Cache-Control", "no-cache")
+
+    private var isCloudflareBypassed = false
 
     override val client: OkHttpClient = network.cloudflareClient.newBuilder()
+        .addInterceptor { chain ->
+            val request = chain.request()
+
+            // Nếu đây là gọi API và chưa từng "mồi" Cloudflare
+            if (!isCloudflareBypassed && request.url.toString().contains("api/v2")) {
+                // Thử gọi trang chủ để kích hoạt check Cloudflare 403
+                val homeRequest = GET("$baseUrl/", headers)
+                val homeResponse = chain.proceed(homeRequest)
+                homeResponse.close()
+                isCloudflareBypassed = true
+            }
+
+            chain.proceed(request)
+        }
         .build()
 
     // ==================== POPULAR ====================
