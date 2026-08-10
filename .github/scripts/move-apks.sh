@@ -19,7 +19,7 @@ rm -rf $DEST && mkdir -p $DEST
 
 for APK in ${APKS[@]}; do
     BASENAME=$(basename $APK)
-    APKNAME="${BASENAME%%+(-release*)}.apk"
+    APKNAME="${BASENAME%%+(-debug*)}.apk"
     APKDEST="$DEST/$APKNAME"
 
     cp $APK $APKDEST
