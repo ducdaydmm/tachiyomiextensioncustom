@@ -1,6 +1,8 @@
 {
+  "index_v2": null,
   "meta": {
     "name": "Tachiyomi Custom Extensions",
-    "website": "https://github.com/ducdaydmm/tachiyomiextensioncustom"
+    "website": "https://github.com/ducdaydmm/tachiyomiextensioncustom",
+    "signingKeyFingerprint": ""
   }
 }

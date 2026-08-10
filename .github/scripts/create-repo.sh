@@ -60,6 +60,7 @@ done | jq -sr '[.[]]' > index.json
 jq -c '.' < index.json > index.min.json
 
 # Copy repo metadata for Kahon/Mihon
-cp ../.github/scripts/repo.json . || true
+FINGERPRINT=$(keytool -printcert -jarfile ${APKS[0]} | grep "SHA256:" | head -n 1 | awk '{print $2}' | tr -d ':' | tr 'A-Z' 'a-z')
+jq --arg fp "$FINGERPRINT" '.meta.signingKeyFingerprint = $fp' ../.github/scripts/repo.json > repo.json
 
 cat index.json
