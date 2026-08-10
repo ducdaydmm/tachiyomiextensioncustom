@@ -64,7 +64,7 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
             
             if (!response.isSuccessful) {
                 val errorBody = response.peekBody(1024).string()
-                throw Exception("Lỗi ${response.code} tại ${request.url}\nChi tiết: $errorBody")
+                throw Exception("Lỗi ${response.code} (Hết hạn Cookie Cloudflare?).\nHãy bấm vào biểu tượng Trái Đất (WebView) ở góc trên cùng bên phải, đợi tải xong web rồi quay lại.\nChi tiết: $errorBody")
             }
             response
         }
