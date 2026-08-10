@@ -43,6 +43,7 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
     }
 
     override fun headersBuilder() = super.headersBuilder()
+        .set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
         .add("Referer", baseUrl)
         .add("X-Requested-With", "XMLHttpRequest")
         .add("Accept", "application/json, text/plain, */*")
