@@ -66,7 +66,12 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
                 isCloudflareBypassed = true
             }
 
-            chain.proceed(request)
+            val response = chain.proceed(request)
+            if (!response.isSuccessful) {
+                val errorBody = response.peekBody(1024).string()
+                throw Exception("Lỗi ${response.code} tại ${request.url}\nChi tiết: $errorBody")
+            }
+            response
         }
         .build()
 
