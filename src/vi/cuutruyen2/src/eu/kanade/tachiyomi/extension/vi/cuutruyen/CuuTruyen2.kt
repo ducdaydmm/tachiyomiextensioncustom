@@ -43,7 +43,6 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
     }
 
     override fun headersBuilder() = super.headersBuilder()
-        .add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
         .add("Referer", baseUrl)
         .add("X-Requested-With", "XMLHttpRequest")
         .add("Accept", "application/json, text/plain, */*")
@@ -52,22 +51,17 @@ class CuuTruyen2 : HttpSource(), ConfigurableSource {
         .add("Sec-Fetch-Mode", "cors")
         .add("Sec-Fetch-Site", "same-origin")
 
-    private var isCloudflareBypassed = false
-
     override val client: OkHttpClient = network.cloudflareClient.newBuilder()
         .addInterceptor { chain ->
             val request = chain.request()
-
-            // Nếu đây là gọi API và chưa từng "mồi" Cloudflare
-            if (!isCloudflareBypassed && request.url.toString().contains("api/v2")) {
-                // Thử gọi trang chủ để kích hoạt check Cloudflare 403
-                val homeRequest = GET("$baseUrl/", headers)
-                val homeResponse = chain.proceed(homeRequest)
-                homeResponse.close()
-                isCloudflareBypassed = true
-            }
-
             val response = chain.proceed(request)
+            
+            // Nếu bị redirect sang MangaDex, báo lỗi yêu cầu mở WebView
+            if (response.request.url.toString().contains("mangadex")) {
+                response.close()
+                throw Exception("Bị Cloudflare chặn! Hãy bấm vào biểu tượng Trái Đất (WebView) ở góc trên cùng bên phải, đợi tải xong web rồi quay lại.")
+            }
+            
             if (!response.isSuccessful) {
                 val errorBody = response.peekBody(1024).string()
                 throw Exception("Lỗi ${response.code} tại ${request.url}\nChi tiết: $errorBody")
